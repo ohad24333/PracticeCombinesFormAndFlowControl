@@ -1,0 +1,50 @@
+<form #cakeForm="ngForm" (submit)="handleSubmit(cakeForm)">
+
+
+    <span>Name: </span>
+    <input type="text" ngModel name="name">
+    <br>
+    <span>Kind: </span>
+    <br>
+    <input type="radio" ngModel name="flavor" id="choclate" value="Choclate">
+    <label for="choclate">Choclate</label>
+    <input type="radio" ngModel name="flavor" id="cheese" value="Cheese">
+    <label for="cheese">Cheese</label>
+    <input type="radio" ngModel name="flavor" id="carot" value="Carot">
+    <label for="carot">Carot</label>
+    <br>
+    <input type="text" ngModel name="tags" placeholder="Tags...">
+    <button>Submit</button>
+
+    <br>
+    <br>
+    <div *ngIf="isValuesEntered">
+        Name: {{cake.name}}
+        <br>
+        Kind: {{cake.kind}}
+        <br>
+        <div [ngSwitch]="cake.kind">
+            <img width="200px" *ngSwitchCase="'Choclate'"
+                src="https://static.toiimg.com/thumb/53096885.cms?width=1200&height=900" alt="">
+
+            <img width="200px" *ngSwitchCase="'Cheese'"
+                src="https://laurenslatest.com/wp-content/uploads/2020/02/cheesecake-recipe-5.jpg" alt="">
+
+            <img width="200px" *ngSwitchCase="'Carot'"
+                src="https://bakerbynature.com/wp-content/uploads/2017/03/untitled-13-of-88-1.jpg" alt="">
+
+        </div>
+        <div *ngIf="isThereAreTags">
+            Tags:
+            <br>
+            <ul>
+                <li *ngFor="let t of cake.tags">{{t}}</li>
+            </ul>
+        </div>
+        <div *ngIf="cake.kind === 'Carot'">
+            Carot Cake Recipe..............
+        </div>
+    </div>
+
+
+</form>
